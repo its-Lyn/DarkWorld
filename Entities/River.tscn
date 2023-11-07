@@ -1,0 +1,142 @@
+[gd_scene load_steps=15 format=3 uid="uid://ctmbkx32nkb1l"]
+
+[ext_resource type="Texture2D" uid="uid://cia2placf71c0" path="res://Assets/River/River_Front_Idle.png" id="1_iugdd"]
+[ext_resource type="Script" path="res://Scripts/Entities/River.gd" id="1_jjox4"]
+[ext_resource type="Texture2D" uid="uid://bb825aqoa5y55" path="res://Assets/River/River_Front_Left.png" id="2_1yibi"]
+[ext_resource type="Texture2D" uid="uid://c72m7y6s4ix0l" path="res://Assets/River/River_Front_Right.png" id="3_48wye"]
+[ext_resource type="Texture2D" uid="uid://csfpv05dvot3f" path="res://Assets/River/River_Back_Left.png" id="3_daea1"]
+[ext_resource type="Texture2D" uid="uid://ctde7kg6j40h7" path="res://Assets/River/River_Left_Idle.png" id="3_kleny"]
+[ext_resource type="Texture2D" uid="uid://dgxqddljrt1ww" path="res://Assets/River/River_Back_Idle.png" id="4_ew331"]
+[ext_resource type="Texture2D" uid="uid://d1h7w5rkyhco0" path="res://Assets/River/River_Back_Right.png" id="5_s3qan"]
+[ext_resource type="Texture2D" uid="uid://cuyj15pik0wid" path="res://Assets/River/River_Right_Walk.png" id="8_yefhx"]
+[ext_resource type="Texture2D" uid="uid://bvfqmwyo3fv6w" path="res://Assets/River/River_Right_Idle.png" id="9_rtswq"]
+[ext_resource type="Texture2D" uid="uid://dalm3rcqsvqrg" path="res://Assets/River/River_Left_Walk.png" id="10_riqgv"]
+[ext_resource type="PackedScene" uid="uid://ccpsv21enwu3v" path="res://Entities/Dialogue.tscn" id="12_q0jw7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pj3fd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iugdd")
+}],
+"loop": true,
+"name": &"Idle_Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kleny")
+}],
+"loop": true,
+"name": &"Idle_Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_rtswq")
+}],
+"loop": true,
+"name": &"Idle_Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ew331")
+}],
+"loop": true,
+"name": &"Idle_Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_daea1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ew331")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s3qan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ew331")
+}],
+"loop": true,
+"name": &"Walk_Back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1yibi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_iugdd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48wye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_iugdd")
+}],
+"loop": true,
+"name": &"Walk_Front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_riqgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kleny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_riqgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kleny")
+}],
+"loop": true,
+"name": &"Walk_Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_yefhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rtswq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yefhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rtswq")
+}],
+"loop": true,
+"name": &"Walk_Right",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok4r0"]
+size = Vector2(27, 49)
+
+[node name="River" type="CharacterBody2D"]
+z_index = 2
+position = Vector2(560, 267)
+collision_mask = 8
+script = ExtResource("1_jjox4")
+metadata/_edit_group_ = true
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_pj3fd")
+animation = &"Walk_Left"
+frame = 3
+frame_progress = 0.421389
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 18.5)
+shape = SubResource("RectangleShape2D_ok4r0")
+
+[node name="TextboxLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialogue" parent="TextboxLayer" instance=ExtResource("12_q0jw7")]

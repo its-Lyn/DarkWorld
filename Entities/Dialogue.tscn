@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccpsv21enwu3v"]
+
+[ext_resource type="Texture2D" uid="uid://6wmvtw6i3q03" path="res://Assets/Furniture/Dialogue_Box.png" id="1_5u63c"]
+[ext_resource type="FontFile" uid="uid://bsxmd4aqf3ico" path="res://Assets/Fonts/Silkscreen-Regular.ttf" id="2_g4g68"]
+[ext_resource type="Script" path="res://Scripts/Entities/DialogueBox.gd" id="2_i7an2"]
+
+[sub_resource type="Theme" id="Theme_2xn56"]
+default_font = ExtResource("2_g4g68")
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_7jo17"]
+default_font = ExtResource("2_g4g68")
+
+[node name="Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox" type="TextureRect" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -345.0
+offset_top = -278.0
+offset_right = 345.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_5u63c")
+script = ExtResource("2_i7an2")
+
+[node name="Name" type="RichTextLabel" parent="DialogueBox"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 19.0
+offset_right = 648.0
+offset_bottom = 71.0
+theme = SubResource("Theme_2xn56")
+
+[node name="Dialogue" type="RichTextLabel" parent="DialogueBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 37.0
+offset_top = -36.0
+offset_right = 650.0
+offset_bottom = 107.0
+grow_vertical = 2
+theme = SubResource("Theme_7jo17")
+
+[node name="TextTimer" type="Timer" parent="DialogueBox"]
